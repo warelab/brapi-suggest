@@ -1,0 +1,115 @@
+swagger: "2.0"
+info:
+  version: "1.0.0"
+  title: "express-openapi suggest service"
+basePath: /v1
+paths: {}
+definitions:
+  Error:
+    additionalProperties: true
+  ResponseHeader:
+    required:
+     - status
+     - QTime
+     - params
+    properties:
+      status:
+        type: integer
+      QTime:
+        type: integer
+      params:
+        type: object
+  Suggestion:
+    required:
+     - entity
+     - fq
+     - fv
+     - label
+     - tally
+     - score
+     - brapiName
+     - brapiUrl
+     - text
+    properties:
+      entity:
+        type: string
+      fq:
+        type: string
+      fv:
+        type: string
+      id:
+        type: string
+      label:
+        type: string
+      brapiName:
+        type: string
+      brapiUrl:
+        type: string
+      tally:
+        type: integer
+        minimum: 0
+      score:
+        type: number
+        minimum: 0
+      text:
+        $ref: "#/definitions/string_list"
+  Suggestions:
+    required:
+      - docs
+      - maxScore
+      - numFound
+      - start
+    properties:
+      docs:
+        type: array
+        items:
+          $ref: "#/definitions/Suggestion"
+      maxScore:
+        type: number
+        minimum: 0.0
+      numFound:
+        type: integer
+        minimum: 0
+      start:
+        type: integer
+        minimum: 0
+  SuggestionType:
+    required:
+     - groupValue
+     - doclist
+    properties:
+      groupValue:
+        type: string
+      doclist:
+        $ref: "#/definitions/Suggestions"
+  Entity:
+    type: object
+    required:
+     - matches
+     - groups
+    properties:
+      matches:
+        type: integer
+      groups:
+        type: array
+        items:
+          $ref: "#/definitions/SuggestionType"
+  GroupedBy:
+    required:
+     - entity
+    properties:
+      category:
+        $ref: "#/definitions/Entity"
+  SolrSuggestResponse:
+    required:
+     - responseHeader
+     - grouped
+    properties:
+      responseHeader:
+        $ref: "#/definitions/ResponseHeader"
+      grouped:
+        $ref: "#/definitions/GroupedBy"
+  string_list:
+    type: array
+    items:
+      type: string

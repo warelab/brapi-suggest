@@ -1,0 +1,16 @@
+{
+  "name": "brapi-suggest-server",
+  "version": "1.0.0",
+  "description": "server for BrAPI suggestions",
+  "main": "app.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Andrew Olson",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.16.4",
+    "express-openapi": "^4.5.0"
+  }
+}
