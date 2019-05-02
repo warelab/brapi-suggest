@@ -20,3 +20,10 @@ Run this command to populate a solr instance for a given BrAPI endpoint
 ### query the solr instance
 [`http://localhost:8983/solr/brapi/query?q=*:*`](http://localhost:8983/solr/brapi/query?q=*:*)
 replace `q=*:*` with `q=field:value` for specific queries
+
+### launch express server
+Because it's not a good idea to expose the solr instance to the world, we need to run a little server with CORS headers in front of it
+```
+npm i
+node app.js 10012
+```
