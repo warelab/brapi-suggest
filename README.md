@@ -18,5 +18,5 @@ Run this command to populate a solr instance for a given BrAPI endpoint
 ./redis2solr.js --name TEST_SERVER --url https://test-server.brapi.org/brapi/v1/ --solr http://localhost:8983/solr/brapi
 ```
 ### query the solr instance
-[example query](http://localhost:8983/solr/brapi/query?q=*:*)
+[`http://localhost:8983/solr/brapi/query?q=*:*`](http://localhost:8983/solr/brapi/query?q=*:*)
 replace `q=*:*` with `q=field:value` for specific queries
