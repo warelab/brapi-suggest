@@ -78,7 +78,7 @@ const getStudies = (trialDbId) => {
 
 const getAnything = (endpoint, page) => {
   page = page || 0;
-  const pageSize=100;
+  const pageSize = (endpoint === 'germplasm-search') ? 1000 : 100;
   console.error(`get ${BASE_URL}${endpoint}?page=${page}`);
   let options = {
     method: 'GET',

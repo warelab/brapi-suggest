@@ -1,0 +1,23 @@
+{
+  "name": "brapi-suggest",
+  "version": "1.0.0",
+  "description": "index BrAPI endpoints for type-ahead search by brapi-searcher",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/warelab/brapi-suggest.git"
+  },
+  "author": "Andrew Olson",
+  "license": "GPL",
+  "bugs": {
+    "url": "https://github.com/warelab/brapi-suggest/issues"
+  },
+  "homepage": "https://github.com/warelab/brapi-suggest#readme",
+  "dependencies": {
+    "minimist": "^1.2.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  }
+}

@@ -47,9 +47,10 @@ function tidy(x) {
 }
 
 const getSearchables = async () => {
-  const entityTypes = ['not a searchable','germplasm','images','markers','observationunits','programs','samples','studies','variables'];
+  const entityTypes = ['not a searchable','germplasm','germplasm-search','images','markers','observationunits','programs','samples','studies','trials','traits','variables'];
   const indexedFields = {
     germplasm: ['germplasmPUI','germplasmDbId','germplasmName','commonCropName'],
+    "germplasm-search": ['germplasmDbId','germplasmPUI','germplasmName','commonCropName'],
     images: ['imageDbId','imageName','observationUnitDbId','observationDbId','descriptiveOntologyTerm'],
     markers: ['markerDbId','markerName','type'],
     observationunits: ['germplasmDbId','observationVariableDbId','studyDbId','locationDbId','trialDbId','programDbId','seasonDbId','observationLevel'],
@@ -62,6 +63,7 @@ const getSearchables = async () => {
   };
   const unindexedKey = {
     germplasm: 'germplasmDbId',
+    "germplasm-search": 'germplasmDbId',
     images: 'imageDbId',
     markers: 'markerDbId',
     observationunits: 'observationUnitDbId',
@@ -74,6 +76,7 @@ const getSearchables = async () => {
   };
   const unindexedLabel = {
     germplasm: 'germplasmName',
+    "germplasm-search": 'germplasmName',
     images: 'imageName',
     markers: 'markerName',
     observationunits: 'observationUnitName',
@@ -89,6 +92,8 @@ const getSearchables = async () => {
   // let availableEntities = entityTypes.filter(entityType => callIdx.hasOwnProperty(`search/${entityType}`) && callIdx.hasOwnProperty(entityType));
   let availableEntities = entityTypes.filter(entityType => callIdx.hasOwnProperty(entityType));
   availableEntities.forEach(entityType => {
+    const et = entityType;
+    et.replace('-search','');
     brapi.getAnything(entityType).then(response => {
       if (!response) {
         console.error("response is undefined");
@@ -106,7 +111,7 @@ const getSearchables = async () => {
             let keyValue = entity[keyField];
             tidy(entity[field]).forEach(value => {
               if (value) {
-                let key = JSON.stringify([entityType,keyField,keyValue,keyLabel,value]);
+                let key = JSON.stringify([et,keyField,keyValue,keyLabel,value]);
                 // increment tally in redis
                 console.log(redisify('HINCRBY',brapiServiceName,key,'1'));
               }
