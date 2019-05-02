@@ -92,8 +92,7 @@ const getSearchables = async () => {
   // let availableEntities = entityTypes.filter(entityType => callIdx.hasOwnProperty(`search/${entityType}`) && callIdx.hasOwnProperty(entityType));
   let availableEntities = entityTypes.filter(entityType => callIdx.hasOwnProperty(entityType));
   availableEntities.forEach(entityType => {
-    const et = entityType;
-    et.replace('-search','');
+    const et = entityType.replace('-search','');
     brapi.getAnything(entityType).then(response => {
       if (!response) {
         console.error("response is undefined");
