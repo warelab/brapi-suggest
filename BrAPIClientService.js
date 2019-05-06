@@ -102,7 +102,7 @@ const getAnything = (endpoint, page) => {
         console.error("moreData.result not defined",endpoint,page);
         process.exit(2);
       }
-      _.concat(response.result.data, moreData.result.data);
+      response.result.data = _.concat(response.result.data, moreData.result.data);
       return response;
     }
     return response

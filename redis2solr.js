@@ -76,20 +76,4 @@ getRedis(1).then(client => {
       client.quit();
     });
   })
-    // Object.keys(obj).forEach(key => {
-    //   let fields = JSON.parse(key); // entityType,keyField,keyValue,keyLabel,value
-    //   let suggestion = {
-    //     tally: obj[key],
-    //     brapiName: brapiServiceName,
-    //     brapiUrl: brapiServiceUrl,
-    //     entity: fields[0],
-    //     fq: fields[1],
-    //     fv: fields[2],
-    //     label: fields[3],
-    //     text: fields[4]
-    //   };
-    //   console.log(suggestion);
-    // })
-    // client.quit();
-  // })
 });
